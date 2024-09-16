@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Idade</title>
+    <script>
+        function calcularIdade() {
+            // Obter a data de nascimento inserida
+            const dataNascimento = document.getElementById('dataNascimento').value;
+            if (!dataNascimento) {
+                alert('Por favor, insira uma data de nascimento válida.');
+                return;
+            }
+
+            // Obter a data atual
+            const dataAtual = new Date();
+            const nascimento = new Date(dataNascimento);
+
+            // Calcular a diferença em anos, meses e dias
+            let anos = dataAtual.getFullYear() - nascimento.getFullYear();
+            let meses = dataAtual.getMonth() - nascimento.getMonth();
+            let dias = dataAtual.getDate() - nascimento.getDate();
+
+            // Ajustes se necessário
+            if (dias < 0) {
+                meses--;
+                const ultimoDiaMesAnterior = new Date(dataAtual.getFullYear(), dataAtual.getMonth(), 0).getDate();
+                dias += ultimoDiaMesAnterior;
+            }
+            if (meses < 0) {
+                anos--;
+                meses += 12;
+            }
+
+            // Exibir o resultado
+            document.getElementById('resultado').textContent = `Idade: ${anos} anos, ${meses} meses, e ${dias} dias.`;
+        }
+    </script>
+</head>
+<body>
+
+    <h1>Calculadora de Idade</h1>
+    <label for="dataNascimento">Data de Nascimento:</label>
+    <input type="date" id="dataNascimento" required>
+    <button onclick="calcularIdade()">Calcular Idade</button>
+
+    <p id="resultado"></p>
+
+</body>
+</html>
