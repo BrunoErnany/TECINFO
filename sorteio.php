@@ -23,3 +23,4 @@ switch($numero1) {
 }    
 echo "parabens,o seu premio foi";
 ?>     
+require()
